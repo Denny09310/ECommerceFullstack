@@ -29,6 +29,7 @@ public class User
     public UserRole Role { get; set; }
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter<UserRole>))]
 public enum UserRole
 {
     User,

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceFullstack.Data;
 
-public class OrderProducts
+public class OrderProduct
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

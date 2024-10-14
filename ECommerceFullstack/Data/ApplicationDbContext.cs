@@ -4,7 +4,7 @@ namespace ECommerceFullstack.Data;
 
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<OrderProducts> OrderProducts { get; set; }
+    public DbSet<OrderProduct> OrderProducts { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
@@ -14,7 +14,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
         modelBuilder.Entity<Product>()
             .HasQueryFilter(p => p.DeletedAt == null);
 
-        modelBuilder.Entity<OrderProducts>()
+        modelBuilder.Entity<OrderProduct>()
             .HasQueryFilter(p => p.Product.DeletedAt == null);
 
         modelBuilder.Entity<User>()
