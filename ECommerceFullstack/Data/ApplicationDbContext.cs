@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApplication1.Data;
+namespace ECommerceFullstack.Data;
 
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
+    public DbSet<Order> Orders { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<User> Users { get; set; }
 

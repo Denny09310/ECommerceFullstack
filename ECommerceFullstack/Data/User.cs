@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace WebApplication1.Data;
+namespace ECommerceFullstack.Data;
 
 [Index(nameof(Email), IsUnique = true)]
 public class User
@@ -20,15 +20,17 @@ public class User
     [StringLength(255)]
     public string? Name { get; set; } = default!;
 
+    [InverseProperty(nameof(Order.User))]
+    public virtual ICollection<Order> Orders { get; set; } = [];
+
     [JsonIgnore]
     public string Password { get; set; } = default!;
 
-    public Role Role { get; set; }
+    public UserRole Role { get; set; }
 }
 
-public enum Role
+public enum UserRole
 {
     User,
     Seller
 }
-
