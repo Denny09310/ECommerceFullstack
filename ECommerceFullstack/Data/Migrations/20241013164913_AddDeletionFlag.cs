@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebApplication1.Data.Migrations
+namespace ECommerceFullstack.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddDeletionFlag : Migration

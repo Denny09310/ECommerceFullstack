@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WebApplication1.Data.Migrations
+namespace ECommerceFullstack.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddUsersTable : Migration

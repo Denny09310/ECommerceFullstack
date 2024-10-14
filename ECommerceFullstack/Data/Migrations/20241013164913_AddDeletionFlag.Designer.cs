@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication1.Data;
+using ECommerceFullstack.Data;
 
 #nullable disable
 
-namespace WebApplication1.Data.Migrations
+namespace ECommerceFullstack.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20241013164913_AddDeletionFlag")]
@@ -20,7 +20,7 @@ namespace WebApplication1.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("WebApplication1.Models.Product", b =>
+            modelBuilder.Entity("ECommerceFullstack.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

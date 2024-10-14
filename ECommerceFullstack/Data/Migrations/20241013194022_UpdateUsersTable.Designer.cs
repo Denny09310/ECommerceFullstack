@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication1.Data;
+using ECommerceFullstack.Data;
 
 #nullable disable
 
-namespace WebApplication1.Data.Migrations
+namespace ECommerceFullstack.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20241013194022_UpdateUsersTable")]
@@ -20,7 +20,7 @@ namespace WebApplication1.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("WebApplication1.Data.Product", b =>
+            modelBuilder.Entity("ECommerceFullstack.Data.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication1.Data.User", b =>
+            modelBuilder.Entity("ECommerceFullstack.Data.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

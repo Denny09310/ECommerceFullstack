@@ -1,6 +1,6 @@
 using FastEndpoints;
-using FastEndpoints.Swagger;
 using FastEndpoints.Security;
+using FastEndpoints.Swagger;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);

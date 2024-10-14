@@ -35,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Using Include="WebApplication1.Data" />
+	  <Using Include="ECommerceFullstack.Data" />
 	</ItemGroup>
 	
 </Project>
