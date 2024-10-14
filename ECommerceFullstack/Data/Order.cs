@@ -9,6 +9,7 @@ public class Order
     public DateTime CreatedAt { get; set; }
 
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     public OrderStatus Status { get; set; }
