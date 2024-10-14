@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Data;
 
@@ -11,6 +11,10 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     {
         modelBuilder.Entity<Product>()
             .HasQueryFilter(p => p.DeletedAt == null);
+
+        modelBuilder.Entity<User>()
+            .Property(p => p.Role)
+            .HasConversion<string>();
 
         base.OnModelCreating(modelBuilder);
     }

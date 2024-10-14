@@ -32,7 +32,7 @@ internal sealed class Endpoint(ApplicationDbContext db) : Endpoint<Request, Resp
             [
                 new Claim(ClaimTypes.NameIdentifier, $"{user.Id}"),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, $"{user.Role}")
             ]);
         });
 

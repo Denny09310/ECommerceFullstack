@@ -1,6 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using FastEndpoints.Security;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,9 @@ app.UseDefaultExceptionHandler();
 
 app.UseHttpsRedirection();
 
-app.MapFastEndpoints();
+app.MapFastEndpoints(config =>
+{
+    config.Security.RoleClaimType = ClaimTypes.Role;
+});
 
 app.Run();

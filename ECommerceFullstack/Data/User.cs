@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -23,5 +23,12 @@ public class User
     [JsonIgnore]
     public string Password { get; set; } = default!;
 
-    public string Role { get; set; } = "user";
+    public Role Role { get; set; }
 }
+
+public enum Role
+{
+    User,
+    Seller
+}
+
