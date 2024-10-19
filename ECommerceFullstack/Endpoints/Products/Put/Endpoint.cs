@@ -7,7 +7,7 @@ internal sealed class Endpoint(ApplicationDbContext db) : Endpoint<Request, Resp
     public override void Configure()
     {
         Put("/products/{id}");
-        Roles(nameof(UserRole.Seller));
+        Roles("Admin", "Seller");
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)

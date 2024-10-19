@@ -7,7 +7,7 @@ public class Product
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public string Id { get; set; } = default!;
 
     [StringLength(255)]
     public string? Image { get; set; }

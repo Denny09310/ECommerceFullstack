@@ -20,9 +20,9 @@ public class Order
     public virtual ICollection<OrderProduct> Products { get; set; } = [];
 
     [ForeignKey(nameof(UserId))]
-    public virtual User User { get; set; } = default!;
+    public virtual ApplicationUser User { get; set; } = default!;
 
-    public int UserId { get; set; }
+    public string UserId { get; set; } = default!;
 
     // Computed total directly on the entity
     public decimal Total => Products.Sum(p => p.Product.Price * p.Quantity);

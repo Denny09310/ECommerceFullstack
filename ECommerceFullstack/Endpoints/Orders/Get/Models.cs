@@ -6,7 +6,7 @@ namespace Orders.Get;
 internal sealed class Request
 {
     [FromClaim(ClaimTypes.NameIdentifier)]
-    public int UserId { get; set; }
+    public string UserId { get; set; }
 }
 
 internal sealed class Response
@@ -25,7 +25,7 @@ internal sealed class Response
     public sealed class Product
     {
         public string? Description { get; set; } = default!;
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string? Image { get; set; } = default!;
         public string Name { get; set; } = default!;
         public decimal Price { get; set; }

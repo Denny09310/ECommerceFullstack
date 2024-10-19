@@ -2,6 +2,8 @@ using FastEndpoints;
 using FluentValidation;
 using System.Security.Claims;
 
+using Order = ECommerceFullstack.Data.Order;
+
 namespace Orders.Post;
 
 internal sealed class Request
@@ -9,11 +11,11 @@ internal sealed class Request
     public IEnumerable<Product> Products { get; set; }
 
     [FromClaim(ClaimTypes.NameIdentifier)]
-    public int UserId { get; set; }
+    public string UserId { get; set; }
 
     internal sealed class Product
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int Quantity { get; set; }
     }
 }
@@ -39,13 +41,13 @@ internal sealed class Validator : Validator<Request>
 
 internal sealed class Response
 {
-    public ECommerceFullstack.Data.Order Order { get; set; }
+    public Order Order { get; set; }
 
     public IEnumerable<OrderProduct> Products { get; set; }
 
     internal sealed class OrderProduct
     {
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public int Quantity { get; set; }
     }
 }

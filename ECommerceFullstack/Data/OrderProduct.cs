@@ -15,7 +15,7 @@ public class OrderProduct
 
     public virtual Product Product { get; set; } = default!;
 
-    public int ProductId { get; set; }
+    public string ProductId { get; set; }
 
     public int Quantity { get; set; }
 }
