@@ -20,6 +20,7 @@
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="FastEndpoints.Security" Version="5.30.0" />
 		<PackageReference Include="FastEndpoints.Swagger" Version="5.30.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.10" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
 		  <PrivateAssets>all</PrivateAssets>
@@ -32,6 +33,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="[4.7.0]" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="[4.7.0]" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ECommerceFullstack.Client\ECommerceFullstack.Client.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

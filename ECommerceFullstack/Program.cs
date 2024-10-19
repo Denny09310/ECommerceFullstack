@@ -19,6 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseWebAssemblyDebugging();
     app.UseSwaggerGen();
 }
 
@@ -26,8 +27,15 @@ app.UseDefaultExceptionHandler();
 
 app.UseHttpsRedirection();
 
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.MapFallbackToFile("index.html");
 app.MapFastEndpoints(config =>
 {
+    config.Endpoints.RoutePrefix = "api";
     config.Serializer.Options.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     config.Security.RoleClaimType = ClaimTypes.Role;
 });
