@@ -1,0 +1,54 @@
+﻿@page "/authentication/login"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject IApiClient Api
+
+<div class="p-4">
+
+    <!-- Page Title -->
+    <h1 class="leading-6 mb-6 text-2xl font-bold">Login</h1>
+
+    <!-- Login Form -->
+    <EditForm Model="@model" OnValidSubmit="ValidSubmitHandlerAsync">
+        <DataAnnotationsValidator />
+
+        <div class="space-y-4">
+            <ShoelaceInput @bind-Value="model.Email" Label="Email" Type="email" Required />
+            <ValidationMessage For="@(() => model.Email)" />
+
+            <ShoelaceInput @bind-Value="model.Password" Label="Password" Type="password" PasswordToggle Required />
+            <ValidationMessage For="@(() => model.Password)" />
+
+            <p class="text-sm">
+                Already have an account?
+                <a href="authentication/register" class="hover:underline" style="color: var(--sl-color-primary-600)">Register</a>
+            </p>
+
+            <ShoelaceButton Type="submit" Class="w-full" Variant="primary">Login</ShoelaceButton>
+        </div>
+    </EditForm>
+</div>
+
+@code
+{
+    [SupplyParameterFromQuery]
+    public string? ReturnUrl { get; set; }
+
+    private FormModel model = new();
+
+    private async Task ValidSubmitHandlerAsync()
+    {
+        await ((TokenAuthenticationStateProvider)AuthenticationStateProvider).LoginAsync(model.Email, model.Password);
+        NavigationManager.NavigateTo(ReturnUrl ?? "");
+    }
+
+    private sealed class FormModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = default!;
+
+        [Required]
+        public string Password { get; set; } = default!;
+    }
+}
