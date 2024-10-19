@@ -28,13 +28,12 @@ internal sealed class Endpoint(ApplicationDbContext db) : Endpoint<Request, Resp
 
             // Prepare the order products now that Order.Id is available
             var orderProducts = req.Products
-                .Join(db.Products, p => p.Id, p => p.Id, (p1, p2) => new { p1.Quantity, p2.Id, p2.Price })
+                .Join(db.Products, p => p.Id, p => p.Id, (p1, p2) => new { p1.Quantity, p2.Id, })
                 .Select(product => new OrderProduct
                 {
                     OrderId = order.Id,
                     ProductId = product.Id,
                     Quantity = product.Quantity,
-                    Price = product.Price
                 });
 
             // Add the order products to the context

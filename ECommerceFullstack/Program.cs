@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ app.UseHttpsRedirection();
 
 app.MapFastEndpoints(config =>
 {
+    config.Serializer.Options.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     config.Security.RoleClaimType = ClaimTypes.Role;
 });
 

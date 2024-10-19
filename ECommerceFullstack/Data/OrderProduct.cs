@@ -13,8 +13,6 @@ public class OrderProduct
 
     public int OrderId { get; set; }
 
-    public decimal Price { get; set; }
-
     public virtual Product Product { get; set; } = default!;
 
     public int ProductId { get; set; }

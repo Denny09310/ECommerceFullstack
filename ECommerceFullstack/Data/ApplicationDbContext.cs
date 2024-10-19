@@ -12,10 +12,10 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>()
-            .HasQueryFilter(p => p.DeletedAt == null);
+            .HasQueryFilter(p => !p.DeletedAt.HasValue);
 
         modelBuilder.Entity<OrderProduct>()
-            .HasQueryFilter(p => p.Product.DeletedAt == null);
+            .HasQueryFilter(p => !p.Product.DeletedAt.HasValue);
 
         modelBuilder.Entity<User>()
             .Property(p => p.Role)

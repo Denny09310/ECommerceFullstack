@@ -28,11 +28,12 @@ internal sealed class Endpoint(ApplicationDbContext db) : Endpoint<Request, Resp
         {
             options.SigningKey = Config["Authentication:PrivateKey"]!;
             options.ExpireAt = DateTime.UtcNow.AddDays(1);
+            options.User.Roles.Add(user.Role.ToString());
             options.User.Claims.AddRange(
             [
-                new Claim(ClaimTypes.NameIdentifier, $"{user.Id}"),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, $"{user.Role}")
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             ]);
         });
 
