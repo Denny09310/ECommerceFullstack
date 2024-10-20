@@ -20,13 +20,3 @@ internal class ApplicationDbContext(DbContextOptions options) : IdentityDbContex
         base.OnModelCreating(builder);
     }
 }
-
-internal static class IdentityExtensions
-{
-    internal static IEndpointConventionBuilder MapIdentityApi(this IEndpointRouteBuilder app)
-    {
-        return app.MapGroup("/api/identity")
-                  .WithTags("Identity")
-                  .MapIdentityApi<ApplicationUser>();
-    }
-}
