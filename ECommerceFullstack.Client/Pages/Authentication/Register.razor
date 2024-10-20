@@ -1,7 +1,61 @@
 ﻿@page "/authentication/register"
+@inject NavigationManager NavigationManager
+@inject IApiClient Api
 
-<h3>Register</h3>
+<div class="p-4">
 
-@code {
+    <!-- Page Title -->
+    <h1 class="leading-6 mb-6 text-2xl font-bold">Login</h1>
 
+    <!-- Login Form -->
+    <EditForm Model="@model" OnValidSubmit="ValidSubmitHandlerAsync">
+        <DataAnnotationsValidator />
+
+        <div class="space-y-4">
+            <ShoelaceInput @bind-Value="model.Email" Label="Email" Type="email" Required />
+            <ValidationMessage For="@(() => model.Email)" />
+
+            <ShoelaceInput @bind-Value="model.Password" Label="Password" Type="password" PasswordToggle Required />
+            <ValidationMessage For="@(() => model.Password)" />
+
+            <ShoelaceInput @bind-Value="model.ConfirmationPassword" Label="Confirmation Password" Type="password" PasswordToggle Required />
+            <ValidationMessage For="@(() => model.ConfirmationPassword)" />
+
+            <p class="text-sm">
+                Already have an account?
+                <a href="authentication/register" class="hover:underline" style="color: var(--sl-color-primary-600)">Register</a>
+            </p>
+
+            <ShoelaceButton Type="submit" Class="w-full" Variant="primary">Login</ShoelaceButton>
+        </div>
+    </EditForm>
+</div>
+
+@code
+{
+    private FormModel model = new();
+
+    private async Task ValidSubmitHandlerAsync()
+    {
+        var response = await Api.RegisterAsync(new IdentityRegisterRequest { Email = model.Email, Password = model.Password });
+
+        if (response.IsSuccessStatusCode)
+        {
+            NavigationManager.NavigateTo("authentication/login");
+        }
+    }
+
+    private sealed class FormModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = default!;
+
+        [Required]
+        [Compare(nameof(ConfirmationPassword))]
+        public string Password { get; set; } = default!;
+
+        [Required]
+        public string ConfirmationPassword { get; set; } = default!;
+    }
 }

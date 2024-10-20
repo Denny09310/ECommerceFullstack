@@ -6,14 +6,18 @@ namespace ECommerceFullstack.Client.Http;
 
 internal interface IApiClient
 {
-    [Get("/api/identity/manage/info")]
+    [Get("/identity/manage/info")]
     Task<ApiResponse<IdentityInfoResponse>> GetInfoAsync();
 
-    [Post("/api/identity/login")]
+    [Post("/identity/login")]
     Task<ApiResponse<IdentityLoginResponse>> LoginAsync(
         [Body] IdentityLoginRequest request,
         bool useCookies = false,
         bool useSessionCookies = false);
+
+    [Post("/identity/register")]
+    Task<HttpResponseMessage> RegisterAsync(
+        [Body] IdentityRegisterRequest request);
 }
 
 internal static class ApiClientExtensions
@@ -25,7 +29,8 @@ internal static class ApiClientExtensions
         services.AddRefitClient<IApiClient>()
             .ConfigureHttpClient((sp, client) =>
             {
-                client.BaseAddress = new(sp.GetRequiredService<IWebAssemblyHostEnvironment>().BaseAddress);
+                var environment = sp.GetRequiredService<IWebAssemblyHostEnvironment>();
+                client.BaseAddress = new Uri(environment.BaseAddress + "api");
             })
             .AddHttpMessageHandler<BearerTokenHandler>();
 

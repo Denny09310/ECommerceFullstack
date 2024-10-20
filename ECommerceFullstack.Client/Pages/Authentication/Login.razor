@@ -1,7 +1,6 @@
 ﻿@page "/authentication/login"
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
-@inject IApiClient Api
 
 <div class="p-4">
 
@@ -20,7 +19,7 @@
             <ValidationMessage For="@(() => model.Password)" />
 
             <p class="text-sm">
-                Already have an account?
+                Don't have an account?
                 <a href="authentication/register" class="hover:underline" style="color: var(--sl-color-primary-600)">Register</a>
             </p>
 
@@ -38,8 +37,13 @@
 
     private async Task ValidSubmitHandlerAsync()
     {
-        await ((TokenAuthenticationStateProvider)AuthenticationStateProvider).LoginAsync(model.Email, model.Password);
-        NavigationManager.NavigateTo(ReturnUrl ?? "");
+        var provider = ((TokenAuthenticationStateProvider)AuthenticationStateProvider);
+        var success = await provider.LoginAsync(model.Email, model.Password);
+
+        if (success)
+        {
+            NavigationManager.NavigateTo(ReturnUrl ?? "");
+        }
     }
 
     private sealed class FormModel

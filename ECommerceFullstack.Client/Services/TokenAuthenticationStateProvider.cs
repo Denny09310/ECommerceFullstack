@@ -25,7 +25,7 @@ internal sealed class TokenAuthenticationStateProvider(IApiClient api, ILocalSto
 
             var content = response.Content;
 
-            IEnumerable<Claim> claims =
+            Claim[] claims =
             [
                 new Claim(ClaimTypes.Name, content.Email),
                 new Claim(ClaimTypes.Email, content.Email),
@@ -42,7 +42,7 @@ internal sealed class TokenAuthenticationStateProvider(IApiClient api, ILocalSto
         }
     }
 
-    public async Task LoginAsync(string email, string password)
+    public async Task<bool> LoginAsync(string email, string password)
     {
         var response = await _api.LoginAsync(new IdentityLoginRequest(email, password));
 
@@ -54,5 +54,7 @@ internal sealed class TokenAuthenticationStateProvider(IApiClient api, ILocalSto
             _localStorage.SetItem("refresh_token", content.RefreshToken);
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
+
+        return response.IsSuccessStatusCode;
     }
 }
